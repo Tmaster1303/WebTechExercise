@@ -47,7 +47,7 @@ app.get("/products/:id", function(req, res) { //(middleware)
             message: "Thong tin san pham " + productID
         } 
     };
-    res.status(200).send(response);
+    res.status(200).json(response);
 })
 
 // Xóa 1 sản phẩm khỏi giỏ hàng + status
@@ -59,17 +59,18 @@ app.delete("/cart/1234/items/:id", function(req, res) {
             message: "Da xoa SP " + id + " khoi gio hang 1234"
         }
     };
-    res.status(200).send(response);
+    res.status(200).json(response);
 })
 
-app.get('/null', function(req, res) {
+app.use('/:unknow',function(req, res) {
+    const unknow = req.params.unknow;
     const response = {
         status: "fail",
         data: {
-            message: "Not Found"
+            message: "Not Found /" + unknow
         }
     }
-    res.status(404).send(response);
+    res.status(404).json(response);
 })
 
 app.listen(3000, function(req, res){
