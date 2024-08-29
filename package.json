@@ -1,6 +1,13 @@
 {
+  "scripts": {
+    "dev": "node --watch server2.js",
+    "openapi:json": "swagger-jsdoc -d openapi/swaggerDefinition.js -o openapi/swaggerSpec.json server.js openapi/components.yaml"
+  },
+
   "dependencies": {
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }

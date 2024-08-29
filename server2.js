@@ -1,9 +1,49 @@
 const express = require('express');
 const app = express();
 app.use(express.json()); //(middleware) Kiểm tra phần body gửi đến có phải dữ liệu json không
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Middleware slide 91
 const router = express.Router();
+
+/** chưa xong
+ * @openapi
+ * /cart/1234/items/{id}:
+ *  delete:
+ *      sumary: Delete item
+ *      description: Delete an item in cart of an user 
+ *      parameters:
+ *          - in: path
+ *              name: cartid
+ *              description: ID of the product
+ *              required: true
+ *              schema: 
+ *                  type: string
+ *  *          - in: path
+ *              name: id
+ *              description: ID of the product
+ *              required: true
+ *              schema: 
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: Details
+ *              content:
+ *                     application/json:
+ *                         schema:
+ *                             type: object
+ *                            properties:
+ *                                 status:
+ *                                     type: string
+ *                                     enum: [success, fail, error]
+ *                                 data:
+ *                                     type: object
+ *                                     properties:
+ *                                         message:
+ *                                             type: string
+
+ */
+
 router.use(function (req, res, next) {
     if (!req.headers["x-auth"]) return next("router");
     next();
@@ -13,10 +53,7 @@ router.get("/user/:id", function (req, res) {
     res.send("hello, user!");
 })
 
-app.use("/admin", router, function(req,res) {
-    //res.sendStatus(200);
-    //res.status(200).send("Thanh");
-})
+
 
 //lấy thông tin sản phẩm xxx
 // app.get("/products/:id",function(req, res) { //(middleware)
@@ -51,12 +88,13 @@ app.get("/products/:id", function(req, res) { //(middleware)
 })
 
 // Xóa 1 sản phẩm khỏi giỏ hàng + status
-app.delete("/cart/1234/items/:id", function(req, res) {
+app.delete("/cart/:cartid/items/:id", function(req, res) {
     const id = req.params.id;
+    const cartid = req.params.cartid;
     const response = {
         status: "success",
         data: {
-            message: "Da xoa SP " + id + " khoi gio hang 1234"
+            message: "Da xoa SP " + id + " khoi gio hang " + cartid
         }
     };
     res.status(200).json(response);
