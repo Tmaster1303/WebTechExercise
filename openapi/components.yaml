@@ -1,0 +1,16 @@
+components:
+  responses:
+    200:
+      application/json:
+        schema:
+        type: object
+        properties: 
+          status:
+            type: string
+            enum: [success, fail, error]
+          data:
+            type: object
+            properties:
+              message:
+                type: string
+                description: the message of the response

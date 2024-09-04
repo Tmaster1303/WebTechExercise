@@ -6,44 +6,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //Middleware slide 91
 const router = express.Router();
 
-/** chưa xong
- * @openapi
- * /cart/1234/items/{id}:
- *  delete:
- *      sumary: Delete item
- *      description: Delete an item in cart of an user 
- *      parameters:
- *          - in: path
- *              name: cartid
- *              description: ID of the product
- *              required: true
- *              schema: 
- *                  type: string
- *  *          - in: path
- *              name: id
- *              description: ID of the product
- *              required: true
- *              schema: 
- *                  type: string
- *      responses:
- *          200:
- *              description: Details
- *              content:
- *                     application/json:
- *                         schema:
- *                             type: object
- *                            properties:
- *                                 status:
- *                                     type: string
- *                                     enum: [success, fail, error]
- *                                 data:
- *                                     type: object
- *                                     properties:
- *                                         message:
- *                                             type: string
-
- */
-
 router.use(function (req, res, next) {
     if (!req.headers["x-auth"]) return next("router");
     next();
