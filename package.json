@@ -4,7 +4,9 @@
     "openapi:json": "swagger-jsdoc -d openapi/swaggerDefinition.js -o openapi/swaggerSpec.json server2.js openapi/components.yaml"
   },
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^5.0.0",
+    "knex": "^3.1.0",
+    "mysql": "^2.18.1",
     "nodemon": "^3.1.4",
     "swagger-ui-express": "^5.0.1"
   },

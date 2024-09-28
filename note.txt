@@ -1,7 +1,7 @@
-npm install knex
-npx knex init
-module.exports
-npx knex migrate:make create_books_table => exports.up (điền các trường dữ liệu vào) exports.down (xóa các trường dữ liệu)
+tải knexjs: npm install knex
+khởi tạo: npx knex init
+vào module.exports cấu hình lại
+Tạo bảng: npx knex migrate:make create_books_table => exports.up (điền các trường dữ liệu vào) exports.down (xóa các trường dữ liệu)
 chạy csdl => xampp, docker(docker start mariadb), ...
 npx knex migrate:lastest
 npx knex create_authors_table
